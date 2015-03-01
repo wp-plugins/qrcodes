@@ -1,0 +1,229 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: QRCodes\n"
+"POT-Creation-Date: 2015-03-01 22:23+0100\n"
+"PO-Revision-Date: 2015-03-01 22:23+0100\n"
+"Last-Translator: Peronnet <pierre.peronnet@gmail.com>\n"
+"Language-Team:  <pierre.peronet@gmail.com>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-KeywordsList: __;_e;_n;esc_attr__;esc_attr_e;esc_attr_n;esc_html__;"
+"esc_html_e\n"
+"X-Poedit-SearchPath-0: G:\\Documents\\My Web Sites\\WordPress\\wp-content"
+"\\plugins\\qrcodes\n"
+
+#: G:\Documents\My Web Sites\WordPress\wp-content\plugins\qrcodes/admin.php:9
+msgid "QRCodes plugin settings"
+msgstr "Options de l'extension QRCodes"
+
+#: G:\Documents\My Web Sites\WordPress\wp-content\plugins\qrcodes/admin.php:21
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin.php:22
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:5
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:6
+msgid "QRCodes"
+msgstr "QRCodes"
+
+#: G:\Documents\My Web Sites\WordPress\wp-content\plugins\qrcodes/admin.php:43
+msgid "Set options used by QRCodes plugin."
+msgstr "Définir les options utilisées par l'extension QRCodes."
+
+#: G:\Documents\My Web Sites\WordPress\wp-content\plugins\qrcodes/admin.php:50
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:58
+msgid "General settings"
+msgstr "Options générales"
+
+#: G:\Documents\My Web Sites\WordPress\wp-content\plugins\qrcodes/admin.php:96
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:84
+msgid "Media query"
+msgstr "Media query"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin.php:110
+msgid "Redirect 404 to home page"
+msgstr "Rediriger le page 404 à la page d'accueil"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin.php:123
+msgid "Qrcodes' link"
+msgstr "Lien des qrcodes"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin.php:137
+msgid "Replace thumbnail's articles"
+msgstr "Remplacer l'image à la une des articles par le qrcode"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin.php:243
+msgid "left"
+msgstr "gauche"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin.php:246
+msgid "right"
+msgstr "droite"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin.php:272
+msgid "top"
+msgstr "haut"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin.php:275
+msgid "bottom"
+msgstr "bas"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_library.php:5
+msgid "QRCode Library settings"
+msgstr "Options de la bibliothèque QRCode PHP"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_library.php:12
+msgid "Correction level"
+msgstr "Niveau de correction"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_library.php:26
+msgid "Matrix point size"
+msgstr "Taille des point de la matrice"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_library.php:40
+msgid "Margin"
+msgstr "Marge"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_library.php:56
+msgid "Set options used by QRCode PHP library."
+msgstr "Définir les options utilisées par la biliothèque QRCode PHP."
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_library.php:80
+msgid "Low"
+msgstr "Basse"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_library.php:86
+msgid "Medium"
+msgstr "Moyenne"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_library.php:92
+msgid "Normal"
+msgstr "Normal"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_library.php:98
+msgid "High"
+msgstr "Haute"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:36
+msgid "QRCodes network settings"
+msgstr "Paramètres QRCodes de réseau"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:51
+msgid "Set network options used by QRCodes plugin."
+msgstr "Définir les options réseaux utilisées par la biliothèque QRCode PHP."
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:70
+msgid "Generate qrcodes for all sites"
+msgstr "Générer les qrcodes pour tout les sites."
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:86
+msgid "Split media query with a single comma."
+msgstr "Séparer les media query avec une seule virgule."
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:96
+msgid "Default qrcodes' link"
+msgstr "Lien par défaut des qrcodes"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:109
+msgid "Allow sites to override"
+msgstr "Autoriser les sites à passer outre"
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:126
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:141
+msgid ""
+"You seem to have a <b>large network</b>. Qrcodes generation does not work "
+"yet."
+msgstr ""
+"Vous semblez avoir un <b>important réseau</b>. La génération des qrcodes ne "
+"fonctionne pas encore."
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:174
+msgid "All qrcodes has been generated for 1 site."
+msgstr "Tous les qrcodes ont été généré pour 1 site."
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:185
+msgid "No qrcodes generated."
+msgstr "Aucune qrcode généré."
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:197
+msgid "Generate qrcodes"
+msgstr "Générer les qrcodes."
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/admin_network.php:207
+#, php-format
+msgid "Last generation: %s"
+msgstr "Dernière génération : %s"
+
+#: G:\Documents\My Web Sites\WordPress\wp-content\plugins\qrcodes/index.php:30
+#, php-format
+msgid "Cannot create %s."
+msgstr "Impossible de créer %s."
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/qrcodes.php:14
+msgid ""
+"QRCode PHP library is not installed. Please specify <i>QRCODES_LIB_PATH</i> "
+"constant in <i>wp_config.php</i>."
+msgstr ""
+"La bibliothèque QRCode PHP n'est pas installée. Veuillez spécifier la "
+"constante <i>QRCODES_LIB_PATH</i> dans <i>wp_config.php</i>."
+
+#: G:\Documents\My Web
+#: Sites\WordPress\wp-content\plugins\qrcodes/qrcodes.php:183
+#, php-format
+msgid "Cannot remove file %s."
+msgstr "Impossible de supprimer le fichier %s."
+
+#~ msgid ""
+#~ "You seem to have a <b>large network</b>. It may take few minutes and "
+#~ "steps to generate qrcodes."
+#~ msgstr "Vous semblez avoir un <b>important réseau</b>. Ce"
+
+#~ msgid "Media queries"
+#~ msgstr "Media queries"
+
+#~ msgid ""
+#~ "You seem to have a <b>large network</b>. It may take few minutes and "
+#~ "steps to generate QRCodes."
+#~ msgstr ""
+#~ "Vous semblez avoir un <b>important réseau</b>. Cela peut prendre "
+#~ "plusieurs minutes à travers quelques étapes pour générer les qrcodes."
+
+#~ msgid "Possible values (separate each one with comma):"
+#~ msgstr "Valeurs possibles (séparer les par des virgules) :"
+
+#~ msgid ""
+#~ "QRCode PHP library is not installed. Please specify <i>QRCODE_LIB_PATH</"
+#~ "i> in <i>wp_config.php</i>."
+#~ msgstr ""
+#~ "La bilbiothèque QRCode PHP n'est pas encore installée. Veuillez spécifier "
+#~ "la constante <i>QRCODE_LIB_PATH</i> dans <i>wp_config.php</i>."
