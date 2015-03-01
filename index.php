@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: QRCode
-Description: Add QRCode to pages
+Plugin Name: QRCodes
+Description: Add qrcodes to pages
 Author: Pierre Péronnet
 Version: 2.0
 */
