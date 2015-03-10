@@ -66,6 +66,7 @@ You can, by adding constants in `wp-config.php` specify path :
 * Use now correctly [Settings API](http://codex.wordpress.org/Settings_API 'wordpress.org').
 * Upgrade media query management interface.
 * Use *postbox* and *nav-tab* style for admin pages.
+* Add some screenshots.
 * Move admin files to */admin* folder
 * Add a default value for media query at plugin activation:
 	* add print medium placed at the top right of pages.
@@ -112,3 +113,4 @@ Please tell me what's wrong with that plugin and what would you have in future v
 * Fix *#wpadminbar* element over *.qrcodes* images.
 * Set *FAQ* in *readme.txt*.
 * Make an index of all qrcodes generated per site, so we can remove them when the site is deleted.
+* Add a banner for [wordpress.org](http://wordpress.org).
