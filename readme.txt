@@ -1,16 +1,15 @@
 === QRCodes ===
-
 Contributors: holyhope
 Donate link:
 Tags: qrcodes, qrcode, flash, barcode, generator, multisite, multiblog, footer, print, navigation, mobile, phone
 Requires at least: 4.1
 Tested up to: 4.1
-Stable tag: 4.3
+Stable tag: trunk
 License: GPLv2 or later.
 License URI: http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses
 
 QRCode add images that visitor can flash with their favorites applications.
-Choose where to display and when (ex: only on printed page, at the top right corner).
+Choose where to display and when (ex: only on printed page).
 
 == Description ==
 
@@ -25,7 +24,7 @@ Help your visitor and everyone to find and reach your website.
 
 QRCodes requires :
 
-* [PHP version 5+](http://php.net)
+* A valid [*QRCode PHP library*](http://sourceforge.net/projects/phpqrcode/ 'SourceForge Project') installation.
 
 == Installation ==
 
@@ -51,19 +50,33 @@ You can, by adding constants in `wp-config.php` specify path :
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets 
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png` 
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. General plugin settings.
+2. Settings of the library (resolution and correction level).
+3. Set positions and size of qrcodes in different media query.
+4. Manage your website in a multisite installation so QRcodes ref to a specific url (with shortcodes) or let administrators set it by themself.
+5. Manage media query in the network admin panel for multisite installation or in normal admin for normal one.
+7. Exemple of qrcode in classique navigation.
+6. Exemple of qrcode in printed page (same page of 6th screenshot, different position).
 
 == Changelog ==
 
+= 1.2 =
+
+* Fix qrcodes generation.
+* Use now correctly [Settings API](http://codex.wordpress.org/Settings_API 'wordpress.org').
+* Upgrade media query management interface.
+* Use *postbox* and *nav-tab* style for admin pages.
+* Move admin files to */admin* folder
+* Add a default value for media query at plugin activation:
+	* add print medium placed at the top right of pages.
+	* Set option autoload to true (decrease load time) for few options.
+
 = 1.1 =
 
-* Fix save settings
-* Add *requirement* section in readme.txt
-* add options:
+* Fix save settings.
+* Add *requirement* section in readme.txt.
+* Add ``[user-id]``, ``[blog-id]``, ``[current-url]`` shortcodes so you can use in qrcodes url (ex: *http//domain.com/qrcodes?redirect=[current-url]*).
+* add many options:
 	* Generate all qrcodes for all blog.
 	* Add and manage media query (active or not and qrcodes position).
 	* Manage qrcodes redirection for blogs through network administration.
@@ -78,8 +91,13 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 * Delete saved QRCode on [`delete_post` hook](http://codex.wordpress.org/Plugin_API/Action_Reference/delete_post).
 * Generate QRCode on the go during [`get_header` hook](http://codex.wordpress.org/Plugin_API/Action_Reference/get_header) for other page.
 * Create QRCode folder in `QRCODES_BASEDIR` if defined, or by default `/uploads/qrcodes`.
-* Delete all QRCodes on plugin deactivation ( [`register_deactivation_hook`](http://codex.wordpress.org/Function_Reference/register_deactivation_hook)).
+* Delete all QRCodes on plugin deactivation ([`register_deactivation_hook`](http://codex.wordpress.org/Function_Reference/register_deactivation_hook)).
 * It is actually displayed on the top right corner, but more options will come.
+
+== Frequently Asked Questions ==
+
+No questions yet. It will coming soon.
+Please tell me what's wrong with that plugin and what would you have in future version.
 
 == Upgrade Notice ==
 
@@ -87,5 +105,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Planned works ==
 
-* Embed [QRCode PHP library](http://sourceforge.net/projects/phpqrcode/ 'SourceForge Project').
+* Embed [*QRCode PHP library*](http://sourceforge.net/projects/phpqrcode/ 'SourceForge Project').
 * Add options to set a cache timeout.
+* Presentation of plugin through *wp-pointer*.
+* Add *screen meta* to show constantes informations and library version.
+* Fix *#wpadminbar* element over *.qrcodes* images.
+* Set *FAQ* in *readme.txt*.
+* Make an index of all qrcodes generated per site, so we can remove them when the site is deleted.

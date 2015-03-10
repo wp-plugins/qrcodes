@@ -27,11 +27,11 @@ function qrcodes_admin_network_load() {
 
 function qrcodes_admin_network_notices() {
     settings_errors( 'qrcodes-network-generate' );
+    settings_errors( 'qrcodes-network-media-query' );
 }
 
 function qrcodes_admin_network_page() {
 	?><div class="wrap"><?php
-		screen_icon();
 		?><h2><?php
 			_e( 'QRCodes network settings', 'qrcodes' );
 		?></h2>
@@ -53,6 +53,7 @@ function qrcodes_network_section() {
 }
 
 function qrcodes_admin_network_init() {
+	// General section
 	add_settings_section(
 		'qrcodes-network',
 		__( 'General settings', 'qrcodes' ),
@@ -72,23 +73,6 @@ function qrcodes_admin_network_init() {
 		'qrcodes-network',
 		'qrcodes-network',
 		'qrcodes-network-generate'
-	);
-
-	register_setting(
-		'qrcodes-network-group',
-		'qrcodes-network-media-query',
-		'qrcodes_save_settings_network_media_query'
-	);
-	add_settings_field(
-		'qrcodes-network-media-query',
-		__( 'Media query', 'qrcodes' ) .
-		'<p>' .
-			__( 'Split media query with a single comma.', 'qrcodes' ) .
-		'</p>',
-		'qrcodes_display_network_media_query',
-		'qrcodes-network',
-		'qrcodes-network',
-		'qrcodes-network-media-query'
 	);
 
 	add_settings_field(
@@ -165,41 +149,90 @@ function qrcodes_save_settings_network_generate( $value = false ) {
 			update_option( $id, 'qrcodes-generated', true );
 		}
 	}
+	$total = $total_site = $offset;
+	
+	$offset = 0;
+	for ( ;; ) {
+		$posts = get_posts( array(
+			'offset'      => $offset,
+			'post_type'   => array(
+				'any',
+			),
+			'post_status' => array(
+				'publish',
+				'pending',
+				'draft',
+				'auto-draft',
+				'future',
+				'private',
+			),
+		) );
+		$nb = count( $posts );
+		if ( $nb == 0 ) {
+			break;
+		}
 
-	if ( $offset > 0 ) {
-		add_settings_error(
-			'qrcodes-network-generate',
-			'no-generated',
-			sprintf( _n(
-				'All qrcodes has been generated for 1 site.',
-				'All qrcodes has been generated for %d sites.',
-				$offset,
-				'qrcodes'
-			), $offset ),
-			'updated'
-		);
-	} else {
-		add_settings_error(
-			'qrcodes-network-generate',
-			'no-generated',
-			__( 'No qrcodes generated.', 'qrcodes' )
-		);
+		$offset += $nb ;
+		foreach ( $posts as $post ) {
+			qrcodes_save_post( $post->ID );
+		}
+	}
+	$total += $offset;
+
+	switch ( $total ) {
+		case 0:
+			add_settings_error(
+				'qrcodes-network-generate',
+				'no-generated',
+				__( 'No qrcodes generated.', 'qrcodes' )
+			);
+			break;
+		case 1:
+			add_settings_error(
+				'qrcodes-network-generate',
+				'no-generated',
+				sprintf( _n(
+					'1 qrcode has been generated for 1 site.',
+					'1 qrcode has been generated for %d sites.',
+					$total_site,
+					'qrcodes'
+				), $total, $total_site ),
+				'updated'
+			);
+			break;
+		default;
+			add_settings_error(
+				'qrcodes-network-generate',
+				'no-generated',
+				sprintf( _n(
+					'%d qrcodes has been generated for 1 site.',
+					'%d qrcodes has been generated for %d sites.',
+					$total_site,
+					'qrcodes'
+				), $total, $total_site ),
+				'updated'
+			);
+			break;
 	}
 	return time();
 }
 
 function qrcodes_display_network_generate( $name ) {
-	$opt = array();
 	if ( wp_is_large_network() ) {
-		$opt['disabled'] = 'disabled';
+		submit_button(
+			__( 'Generate qrcodes', 'qrcodes' ),
+			'primary',
+			$name,
+			true,
+			array( 'disabled' => 'disabled' )
+		);
+	} else {
+		submit_button(
+			__( 'Generate qrcodes', 'qrcodes' ),
+			'primary',
+			$name
+		);
 	}
-	submit_button(
-		__( 'Generate qrcodes', 'qrcodes' ),
-		'large',
-		$name,
-		true,
-		$opt
-	);
 	$last = get_option( $name );
 	if ( $last ) {
 		?><p><?php
@@ -209,20 +242,6 @@ function qrcodes_display_network_generate( $name ) {
 			);
 		?></p><?php
 	}
-}
-
-function qrcodes_save_settings_network_media_query( $media ) {
-	var_dump( $media );
-	return array_unique( array_map( 'trim', explode( ',', $media ) ) );
-}
-
-function qrcodes_display_network_media_query( $name ) {
-	$values = get_option( $name, array( 'print' ) ); ?>
-	<input
-		type="text"
-		name="<?php echo esc_attr( $name ); ?>"
-		value="<?php echo esc_attr( implode( ',', $values ) ); ?>"
-	/><?php
 }
 
 function qrcodes_display_network_override_data_allow( $name ) {
@@ -235,10 +254,13 @@ function qrcodes_display_network_override_data_allow( $name ) {
 }
 
 function qrcodes_display_network_override_data_value( $name ) {
-	$value = get_option( $name, network_home_url() ); ?>
+	$home = network_home_url();
+	$value = get_option( $name, $home ); ?>
 	<input
 		type="text"
 		name="<?php echo esc_attr( $name ); ?>"
 		value="<?php echo esc_attr( $value ); ?>"
+		placeholder="<?php echo esc_attr( $home ); ?>"
+		autocomplete="off"
 	/><?php
 }

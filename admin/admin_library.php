@@ -4,14 +4,14 @@ function qrcodes_admin_init_library() {
 		'qrcodes-library',
 		__( 'QRCode Library settings', 'qrcodes' ),
 		'qrcodes_section_library',
-		'qrcodes'
+		'qrcodes-library'
 	);
 
 	add_settings_field(
 		'qrcodes-library-correction-level',
 		__( 'Correction level', 'qrcodes' ),
 		'qrcodes_display_library_correction_level',
-		'qrcodes',
+		'qrcodes-library',
 		'qrcodes-library',
 		'qrcodes-library-correction-level'
 	);
@@ -25,7 +25,7 @@ function qrcodes_admin_init_library() {
 		'qrcodes-library-matrix-point-size',
 		__( 'Matrix point size', 'qrcodes' ),
 		'qrcodes_display_library_matrix_point_size',
-		'qrcodes',
+		'qrcodes-library',
 		'qrcodes-library',
 		'qrcodes-library-matrix-point-size'
 	);
@@ -39,7 +39,7 @@ function qrcodes_admin_init_library() {
 		'qrcodes-library-margin',
 		__( 'Margin', 'qrcodes' ),
 		'qrcodes_display_library_margin',
-		'qrcodes',
+		'qrcodes-library',
 		'qrcodes-library',
 		'qrcodes-library-margin'
 	);
@@ -50,6 +50,15 @@ function qrcodes_admin_init_library() {
 	);
 }
 add_action( 'admin_init', 'qrcodes_admin_init_library' );
+
+function qrcodes_library_admin_add_page( $pages ) {
+	$pages['library'] = array(
+		'menu'     => __( 'Library', 'qrcodes' ),
+		'sections' => 'qrcodes-library',
+	);
+	return $pages;
+}
+add_filter( 'qrcodes-admin-page', 'qrcodes_library_admin_add_page' );
 
 function qrcodes_section_library() {
 	?><p><?php
@@ -71,8 +80,12 @@ function qrcodes_sanitize_library_correction_level( $value ) {
 }
 
 function qrcodes_display_library_correction_level( $name ) {
-	$value = get_blog_option( get_current_blog_id(), $name, QR_ECLEVEL_M ); ?>
-	<select name="<?php echo esc_attr( $name ); ?>">
+	$value = get_blog_option(
+		get_current_blog_id(),
+		$name,
+		QR_ECLEVEL_M
+	);
+	?><select name="<?php echo esc_attr( $name ); ?>">
 		<option
 				<?php selected( $value, QR_ECLEVEL_L ); ?>
 				value="<?php echo esc_attr( QR_ECLEVEL_L ); ?>"
@@ -97,8 +110,7 @@ function qrcodes_display_library_correction_level( $name ) {
 			>
 			<?php _e( 'High', 'qrcodes' ); ?>
 		</option>
-	</select>
-	<?php
+	</select><?php
 }
 
 function qrcodes_sanitize_library_matrix_point_size( $value ) {
@@ -110,25 +122,23 @@ function qrcodes_sanitize_library_matrix_point_size( $value ) {
 }
 
 function qrcodes_display_library_matrix_point_size( $name ) {
-	$value = get_blog_option( get_current_blog_id(), $name, 3 ); ?>
-	<input
+	$value = get_blog_option( get_current_blog_id(), $name, 3 );
+	?><input
 		min="1"
 		step="1"
 		type="number"
 		name="<?php echo esc_attr( $name ); ?>"
 		value="<?php echo esc_attr( $value ); ?>"
-	/>
-	<?php
+	/><?php
 }
 
 function qrcodes_display_library_margin( $name ) {
-	$value = get_blog_option( get_current_blog_id(), $name, 4 ); ?>
-	<input
+	$value = get_blog_option( get_current_blog_id(), $name, 4 );
+	?><input
 		min="0"
 		step="1"
 		type="number"
 		name="<?php echo esc_attr( $name ); ?>"
 		value="<?php echo esc_attr( $value ); ?>"
-	/>
-	<?php
+	/><?php
 }

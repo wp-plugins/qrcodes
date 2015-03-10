@@ -1,8 +1,28 @@
-.more-options {
+.wrap .more-options {
 	display: none;
 	margin-left: 10px;
 }
 
-input:checked ~ .more-options {
+.wrap input:checked ~ .more-options {
 	display: block;
+}
+
+.wrap .more-options-inverted {
+	display: block;
+	margin-left: 10px;
+}
+
+.wrap input:checked ~ .more-options-inverted {
+	display: none;
+}
+
+.wrap .button.align-left {
+	float: left;
+	margin-right: 10px;
+}
+
+.wrap .description {
+	clear: both;
+	margin-bottom: 15px;
+	margin-left: 10px;
 }

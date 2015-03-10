@@ -31,22 +31,6 @@ function qrcodes_get_basedir() {
 	return QRCODES_BASEDIR;
 }
 
-function qrcodes_get_cached_url( $post_id ) {
-	//TODO
-	return path_join(
-		qrcodes_get_baseurl(),
-		'post-' . $post_id . '.png'
-	);
-}
-
-function qrcodes_get_cached_dir( $blog_id, $post_id ) {
-	//TODO
-	return path_join(
-		qrcodes_get_basedir( $blog_id ),
-		'post-' . $post_id . '.png'
-	);
-}
-
 $qrcodes_current_page_dir;
 $qrcodes_current_page_url;
 
@@ -224,7 +208,7 @@ function qrcodes_footer() {
 add_action( 'wp_footer' , 'qrcodes_footer' );
 
 function qrcodes_enqueue_style() {
-	$media_query = get_option( 'qrcodes-network-media-query', array( 'print' ) );
+	$media_query = get_option( QRCODES_MEDIA_QUERY_OPTION_NAME, array() );
 	wp_enqueue_style(
 		'qrcodes',
 		plugins_url( 'styles/index.css', __FILE__ ),
@@ -232,42 +216,47 @@ function qrcodes_enqueue_style() {
 		1.0,
 		'all'
 	);
-	foreach ( $media_query as $medium ) {
+	foreach ( $media_query as $medium => $desc ) {
+		$style =
+			'display:block;' .
+			get_blog_option(
+				get_current_blog_id(),
+				"qrcodes-media-query-{$medium}-horizontal-direction"
+			) . ':' .
+			get_blog_option(
+				get_current_blog_id(),
+				"qrcodes-media-query-{$medium}-horizontal-value"
+			) . ';' .
+			get_blog_option(
+				get_current_blog_id(),
+				"qrcodes-media-query-{$medium}-vertical-direction"
+			) . ':' .
+			get_blog_option(
+				get_current_blog_id(),
+				"qrcodes-media-query-{$medium}-vertical-value"
+			) . ';';
+		$size = get_blog_option(
+			get_current_blog_id(),
+			"qrcodes-media-query-{$medium}-size"
+		);
+		if ( $auto_size ) {
+			$style .=
+				'width:' .
+				get_blog_option(
+					get_current_blog_id(),
+					"qrcodes-media-query-{$medium}-size"
+				) . ';' .
+				'height:' .
+				get_blog_option(
+					get_current_blog_id(),
+					"qrcodes-media-query-{$medium}-size"
+				) . ';';
+		}
 		wp_add_inline_style(
 			'qrcodes',
 			'@media ' . esc_attr( $medium ) . '{' .
 				'body .qrcode {' .
-					'display:block;' .
-					get_blog_option(
-						get_current_blog_id(),
-						"qrcodes-media-query-{$medium}-horizontal-direction",
-						'right'
-					) . ':' .
-					get_blog_option(
-						get_current_blog_id(),
-						"qrcodes-media-query-{$medium}-horizontal-position",
-						0
-					) .
-					get_blog_option(
-						get_current_blog_id(),
-						"qrcodes-media-query-{$medium}-horizontal-unit",
-						'%'
-					) . ';' .
-					get_blog_option(
-						get_current_blog_id(),
-						"qrcodes-media-query-{$medium}-vertical-direction",
-						'bottom'
-					) . ':' .
-					get_blog_option(
-						get_current_blog_id(),
-						"qrcodes-media-query-{$medium}-vertical-position",
-						100
-					) .
-					get_blog_option(
-						get_current_blog_id(),
-						"qrcodes-media-query-{$medium}-vertical-unit",
-						'%'
-					) . ';' .
+					$style .
 				'}' .
 			'}'
 		);
@@ -299,7 +288,10 @@ add_shortcode( 'current-url', 'qrcodes_shortcode_currenturl' );
 
 function qrcodes_network_data_force( $data ) {
 	return do_shortcode(
-		get_option( 'qrcodes-network-override-data-value', $data )
+		get_option(
+			'qrcodes-network-override-data-value',
+			network_home_url()
+		)
 	);
 }
 function qrcodes_data_force( $data ) {
@@ -311,7 +303,7 @@ function qrcodes_data_force( $data ) {
 		)
 	);
 }
-if ( ! get_option( 'qrcodes-network-allow-override-data', true ) ) {
+if ( ! get_option( 'qrcodes-network-override-data-allow', true ) ) {
 	add_filter( 'qrcodes-data', 'qrcodes_network_data_force', 30 );
 } else {
 	add_filter( 'qrcodes-data', 'qrcodes_data_force' );
