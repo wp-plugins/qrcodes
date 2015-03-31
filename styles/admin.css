@@ -26,3 +26,18 @@
 	margin-bottom: 15px;
 	margin-left: 10px;
 }
+
+.wp-list-table .qrcodes {
+	width: 50px;
+	height: auto;
+}
+
+.wp-list-table .column-preview {
+	width: 60px;
+	text-align: center;
+}
+
+.wp-list-table .column-time {
+	width: 150px;
+	text-align: center;
+}

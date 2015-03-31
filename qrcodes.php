@@ -3,7 +3,10 @@ function qrcodes_load_domain(){
     load_plugin_textdomain(
 		'qrcodes',
 		false,
-		dirname( plugin_basename( __FILE__ ) ) . '/languages'
+		path_join(
+			dirname( plugin_basename( QRCODES_INDEX_FILE ) ),
+			'languages'
+		)
 	);
 }
 add_action( 'init', 'qrcodes_load_domain' );
@@ -18,10 +21,26 @@ function qrcodes_library_not_installed() {
 }
 
 if ( ! defined( 'QRCODES_LIB_PATH' ) ) {
-	add_action( 'all_admin_notices', 'qrcodes_library_not_installed' );
-	return false;
+	$path = path_join(
+		plugin_dir_path( QRCODES_INDEX_FILE ),
+		'phpqrcode'
+	);
+	if ( ! is_dir( $path ) ) {
+		add_action(
+			'all_admin_notices',
+			'qrcodes_library_not_installed'
+		);
+		return false;
+	}
+	define( 'QRCODES_LIB_PATH', $path );
+	unset( $path );
 }
 require_once path_join( QRCODES_LIB_PATH, 'qrlib.php' );
+
+include_once path_join(
+	plugin_dir_path( QRCODES_INDEX_FILE ),
+	'includes/blog_index.php'
+);
 
 function qrcodes_get_baseurl() {
 	return QRCODES_BASEURL;
@@ -76,17 +95,39 @@ function qrcodes_new_blog(
 		$site_id = null,
 		$meta    = null
 	) {
-	$data = get_home_url( $blog_id );
-	$data = apply_filters( 'qrcodes-data', $data );
+	/*
+	remove_shortcode( 'current-url' );
+	add_shortcode(
+		'current-url',
+		function ( $atts ) use ( $url ) {
+			$atts = shortcode_atts( array(
+				'encode' => 'false',
+			), $atts, 'current-url' );
+			if ( wp_validate_boolean( $atts['encode'] ) ) {
+				$url = urlencode( $url );
+			}
+			return $url;
+		}
+	);
+	remove_shortcode( 'user-id' );
+	add_shortcode(
+		'user-id',
+		function ( $atts ) {
+			return '0';
+		}
+	);
+	remove_shortcode( 'blog-id' );
+	add_shortcode(
+		'blog-id',
+		function ( $atts ) use ( $blog_id ) {
+			return $blog_id;
+		}
+	);*/
+	$url = get_home_url( $blog_id );
+	$data = apply_filters( 'qrcodes-data', $url );
 	qrcodes_generate( $data );
 }
 add_action( 'wpmu_new_blog', 'qrcodes_new_blog' );
-
-function qrcodes_delete_blog( $blog_id, $drop ) {
-	$data = get_home_url( $blog_id );
-	qrcodes_remove( $data );
-}
-add_action( 'wpmu_delete_blog', 'qrcodes_delete_blog' );
 
 function qrcodes_get_current_qrcodes_dir() {
 	global $qrcodes_current_page_dir;
@@ -104,11 +145,6 @@ function qrcodes_data_to_filename( $data ) {
 	return md5( $data ) . '.png';
 }
 
-function qrcodes_remove( $data ) {
-	$filename = qrcodes_data_to_filename( $data );
-	@unlink( $filename );
-}
-
 function qrcodes_get_dir( $data ) {
 	return path_join(
 		qrcodes_get_basedir(),
@@ -117,10 +153,10 @@ function qrcodes_get_dir( $data ) {
 }
 
 function qrcodes_generate( $data, $blog_id = false ) {
-	$filename = qrcodes_data_to_filename( $data );
 	if ( false === $blog_id ) {
 		$blog_id = get_current_blog_id();
 	}
+
 	$correction_level = get_blog_option(
 		$blog_id,
 		'qrcodes-library-correction-level',
@@ -136,9 +172,21 @@ function qrcodes_generate( $data, $blog_id = false ) {
 		'qrcodes-library-margin',
 		4
 	);
+	$path = qrcodes_get_dir( $data );
+
 	QRcode::png(
 		$data,
-		qrcodes_get_dir( $data ),
+		$path,
+		$correction_level,
+		$matrix,
+		$margin,
+		false
+	);
+	do_action(
+		'qrcodes-generate',
+		$blog_id,
+		$data,
+		$path,
 		$correction_level,
 		$matrix,
 		$margin,
@@ -146,36 +194,37 @@ function qrcodes_generate( $data, $blog_id = false ) {
 	);
 }
 
+function qrcodes_exists( $data ) {
+	$path = qrcodes_get_dir( $data );
+	return file_exists( $path ) && is_file( $path );
+}
+
+function qrcodes_remove( $data, $blog_id = false ) {
+	if ( false === $blog_id ) {
+		$blog_id = get_current_blog_id();
+	}
+	$path = qrcodes_get_dir( $data );
+
+	if (
+			! file_exists( $path ) ||
+			! unlink( $path )
+		) {
+		return false;
+	}
+	do_action(
+		'qrcodes-remove',
+		$blog_id,
+		$data,
+		$path
+	);
+	return true;
+}
+
 function qrcodes_save_post( $post_id ) {
 	$data = get_permalink( $post_id );
 	qrcodes_generate( $data );
 }
 add_action( 'save_post', 'qrcodes_save_post' );
-
-function qrcodes_delete_post( $post_id ) {
-	$filename = qrcodes_get_dir( get_permalink( $post_id ) );
-	if ( ! file_exists( $filename ) ) {
-		return;
-	}
-	if ( ! @unlink( $filename ) ) {
-		add_action(
-			'all_admin_notices',
-			function () use ( $filename ) { ?>
-				<p class="error">
-					<?php printf(
-						__(
-							'Cannot remove file %s.',
-							'qrcodes'
-						),
-						'<i>' . esc_html( $filename ) . '</i>'
-					); ?>
-				</p>
-				<?php
-			}
-		);
-	}
-}
-add_action( 'delete_post', 'qrcodes_delete_post' );
 
 function qrcodes_get_url( $data ) {
 	return path_join(
@@ -192,18 +241,17 @@ function qrcodes_footer() {
 	$path = qrcodes_get_dir( $data );
 	if ( ! file_exists( $path ) ) {
 		qrcodes_generate( $data );
-	} ?>
-	<img
+	}
+	?><img
 		src="<?php echo qrcodes_get_url( $data ); ?>"
 		class="<?php echo implode(
 			' ',
 			apply_filters(
 				'qrcodes-classes',
-				array( 'qrcode' )
+				array( 'qrcodes' )
 			)
 		); ?>"
-	/>
-	<?php
+	/><?php
 }
 add_action( 'wp_footer' , 'qrcodes_footer' );
 
@@ -255,7 +303,7 @@ function qrcodes_enqueue_style() {
 		wp_add_inline_style(
 			'qrcodes',
 			'@media ' . esc_attr( $medium ) . '{' .
-				'body .qrcode {' .
+				'body .qrcodes {' .
 					$style .
 				'}' .
 			'}'
@@ -269,10 +317,12 @@ function qrcodes_shortcode_blogid( $atts ) {
 }
 add_shortcode( 'blog-id', 'qrcodes_shortcode_blogid' );
 
+/*
 function qrcodes_shortcode_userid( $atts ) {
 	return get_current_user_id();
 }
 add_shortcode( 'user-id', 'qrcodes_shortcode_userid' );
+*/
 
 function qrcodes_shortcode_currenturl( $atts ) {
 	$atts = shortcode_atts( array(
@@ -295,13 +345,13 @@ function qrcodes_network_data_force( $data ) {
 	);
 }
 function qrcodes_data_force( $data ) {
-	return do_shortcode(
-		get_blog_option(
+	$value = get_blog_option(
 			get_current_blog_id(),
 			'qrcodes-override-data-value',
 			network_home_url()
-		)
-	);
+		);
+	$value = do_shortcode( $value );
+	return $value;
 }
 if ( ! get_option( 'qrcodes-network-override-data-allow', true ) ) {
 	add_filter( 'qrcodes-data', 'qrcodes_network_data_force', 30 );

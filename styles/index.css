@@ -1,4 +1,14 @@
-.qrcode {
+.qrcodes {
 	display: none;
-	position: absolute;
+	position: fixed;
+}
+
+.admin-bar .qrcodes {
+	margin-top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+	.admin-bar .qrcodes {
+		margin-top: 46px;
+	}
 }
