@@ -129,14 +129,16 @@ function qrcodes_save_settings_network_generate( $value = false ) {
 		return get_option( 'qrcodes-network-generate' );
 	}
 
-	$total = 0;
+	$total  = 0;
 	$offset = 0;
 	for ( ;; ) {
-		$sites = wp_get_sites( array(
-			'spam'    => false,
-			'offset'  => $offset,
-			'deleted' => false,
-		) );
+		$sites = wp_get_sites(
+			array(
+				'spam'    => false,
+				'offset'  => $offset,
+				'deleted' => false,
+			)
+		);
 		$nb = count( $sites );
 		if ( $nb == 0 ) {
 			break;
@@ -144,9 +146,7 @@ function qrcodes_save_settings_network_generate( $value = false ) {
 		remove_shortcode( 'user-id' );
 		add_shortcode(
 			'user-id',
-			function ( $atts ) {
-				return '0';
-			}
+			create_function( '$atts', 'return \'0\';' )
 		);
 		$offset += $nb;
 		foreach ( $sites as $site ) {
@@ -160,16 +160,16 @@ function qrcodes_save_settings_network_generate( $value = false ) {
 			switch_to_blog( $site_id );
 			$offset_post = 0;
 			for ( ;; ) {
-				$posts = get_posts( array(
-					'offset'      => $offset_post,
-					'post_type'   => array(
-						'any',
-					),
-					'post_status' => array(
-						'publish',
-						'private',
-					),
-				) );
+				$posts = get_posts(
+					array(
+						'offset'      => $offset_post,
+						'post_type'   => array( 'any' ),
+						'post_status' => array(
+							'publish',
+							'private',
+						),
+					)
+				);
 				$nb = count( $posts );
 				if ( $nb == 0 ) {
 					break;
@@ -181,16 +181,20 @@ function qrcodes_save_settings_network_generate( $value = false ) {
 					remove_shortcode( 'current-url' );
 					add_shortcode(
 						'current-url',
-						function ( $atts ) use ( $url ) {
-							$atts = shortcode_atts( array(
-								'encode' => 'false',
-							), $atts, 'current-url' );
-							$encode = $atts['encode'];
+						create_function(
+							'$atts',
+							'$atts   = shortcode_atts(
+								array( \'encode\' => \'false\' ),
+								$atts,
+								\'current-url\'
+							);
+							$encode = $atts[\'encode\'];
+							$url    = \'' . addslashes( $url ) . '\';
 							if ( wp_validate_boolean( $encode ) ) {
 								$url = urlencode( $url );
 							}
-							return $url;
-						}
+							return $url;'
+						)
 					);
 					qrcodes_generate( $url );
 				}
@@ -200,7 +204,7 @@ function qrcodes_save_settings_network_generate( $value = false ) {
 	}
 	restore_current_blog();
 	$total_site = $offset;
-	$total += $offset;
+	$total     += $offset;
 
 	switch ( $total ) {
 		case 0:
@@ -214,12 +218,16 @@ function qrcodes_save_settings_network_generate( $value = false ) {
 			add_settings_error(
 				'qrcodes-network-generate',
 				'no-generated',
-				sprintf( _n(
-					'1 qrcode has been generated for 1 site.',
-					'1 qrcode has been generated for %d sites.',
-					$total_site,
-					'qrcodes'
-				), $total, $total_site ),
+				sprintf(
+					_n(
+						'1 qrcode has been generated for 1 site.',
+						'1 qrcode has been generated for %d sites.',
+						$total_site,
+						'qrcodes'
+					),
+					$total,
+					$total_site
+				),
 				'updated'
 			);
 			break;
@@ -227,12 +235,16 @@ function qrcodes_save_settings_network_generate( $value = false ) {
 			add_settings_error(
 				'qrcodes-network-generate',
 				'no-generated',
-				sprintf( _n(
-					'%d qrcodes has been generated for 1 site.',
-					'%d qrcodes has been generated for %d sites.',
-					$total_site,
-					'qrcodes'
-				), $total, $total_site ),
+				sprintf(
+					_n(
+						'%d qrcodes has been generated for 1 site.',
+						'%d qrcodes has been generated for %d sites.',
+						$total_site,
+						'qrcodes'
+					),
+					$total,
+					$total_site
+				),
 				'updated'
 			);
 			break;
@@ -257,6 +269,7 @@ function qrcodes_display_network_generate( $name ) {
 		);
 	}
 	$last = get_option( $name );
+	
 	if ( $last ) {
 		?><p><?php
 			printf(
@@ -277,7 +290,7 @@ function qrcodes_display_network_override_data_allow( $name ) {
 }
 
 function qrcodes_display_network_override_data_value( $name ) {
-	$home = network_home_url();
+	$home  = network_home_url();
 	$value = get_option( $name, $home ); ?>
 	<input
 		type="text"

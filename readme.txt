@@ -92,6 +92,12 @@ Define `QRCODES_BASEDIR` constant then add following line to *wp-config.php*.
 
 == Changelog ==
 
+= 1.3.1 =
+
+* Format code to respect WordPress standard.
+* Rename files to respect WordPress standard.
+
+
 = 1.3 =
 
 * Embed [*QRCode PHP library*](http://sourceforge.net/projects/phpqrcode/ 'SourceForge Project').

@@ -108,15 +108,17 @@ function qrcodes_media_query_admin_init_table() {
 
 	require_once path_join(
 		__DIR__,
-		'media_query_list_table.php'
+		'media-query-list-table.php'
 	);
 	
 
 	// Media list
-	$media_list = new Qrcodes_Media_Query_List_Table( array(
-		'save_page'   => '?page=qrcodes-media-query-network-page&',
-		'option_name' => QRCODES_MEDIA_QUERY_OPTION_NAME,
-	) );
+	$media_list = new Qrcodes_Media_Query_List_Table(
+		array(
+			'save_page'   => '?page=qrcodes-media-query-network-page&',
+			'option_name' => QRCODES_MEDIA_QUERY_OPTION_NAME,
+		)
+	);
 }
 add_action( 'admin_init', 'qrcodes_media_query_admin_init_table' );
 
@@ -265,9 +267,7 @@ function qrcodes_media_query_admin_init() {
 		add_settings_field(
 			"qrcodes-media-query-{$medium}-size",
 			__( 'Size', 'qrcodes' ) . '<br />' .
-			'<small>' .
-				__( 'use carefully !', 'qrcodes' ) .
-			'</small>',
+			'<small>' . __( 'use carefully !', 'qrcodes' ) . '</small>',
 			'qrcodes_media_query_display_size',
 			'qrcodes-media-query',
 			"qrcodes-media-query-{$medium}",
@@ -360,17 +360,23 @@ function qrcodes_media_query_display_size( $name ) {
 }
 
 function qrcodes_display_media_query_horizontal( $name ) {
-	qrcodes_display_media_query_position( $name, array(
-		'left'  => __( 'left', 'qrcodes' ),
-		'right' => __( 'right', 'qrcodes' ),
-	) );
+	qrcodes_display_media_query_position(
+		$name,
+		array(
+			'left'  => __( 'left', 'qrcodes' ),
+			'right' => __( 'right', 'qrcodes' ),
+		)
+	);
 }
 
 function qrcodes_display_media_query_vertical( $name ) {
-	qrcodes_display_media_query_position( $name, array(
-		'top'    => __( 'top', 'qrcodes' ),
-		'bottom' => __( 'bottom', 'qrcodes' ),
-	) );
+	qrcodes_display_media_query_position(
+		$name,
+		array(
+			'top'    => __( 'top', 'qrcodes' ),
+			'bottom' => __( 'bottom', 'qrcodes' ),
+		)
+	);
 }
 
 function qrcodes_display_media_query_position( $name, $directions ) {
@@ -378,7 +384,7 @@ function qrcodes_display_media_query_position( $name, $directions ) {
 		'%',
 		'px',
 	);
-	$dir = get_blog_option(
+	$dir   = get_blog_option(
 		get_current_blog_id(),
 		"{$name}-direction",
 		'right'
@@ -411,19 +417,18 @@ function qrcodes_display_media_query_position( $name, $directions ) {
 	<select
 		id="<?php echo esc_attr( "{$name}-value[unit]" ); ?>"
 		name="<?php echo esc_attr( "{$name}-value[unit]" ); ?>"
-	><?php
-		foreach ( $units as $unit ) {
-			?><option
-				value="<?php echo esc_attr( $unit ); ?>"
-				<?php selected(
-					$unit,
-					substr( $value, - strlen( $unit ) )
-				); ?>
-			><?php
-				echo esc_html( $unit );
-			?></option><?php
-		}
-	?></select><?php
+	><?php foreach ( $units as $unit ) {
+		?><option
+			value="<?php echo esc_attr( $unit ); ?>"
+			<?php
+			selected(
+				$unit,
+				substr( $value, - strlen( $unit ) )
+			); ?>
+		><?php
+			echo esc_html( $unit );
+		?></option><?php
+	} ?></select><?php
 }
 
 function qrcodes_display_media_query_active( $name ) {

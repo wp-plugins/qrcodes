@@ -1,6 +1,9 @@
 <?php
 if ( ! class_exists( 'WP_List_Table' ) ) {
-   require_once path_join( ABSPATH, 'wp-admin/includes/class-wp-list-table.php' );
+	require_once path_join(
+		ABSPATH,
+		'wp-admin/includes/class-wp-list-table.php'
+	);
 }
 
 class Qrcodes_Media_Query_List_Table extends WP_List_Table {
@@ -9,11 +12,13 @@ class Qrcodes_Media_Query_List_Table extends WP_List_Table {
 		$option_name;
 
 	function __construct( $options ) {
-		parent::__construct( array(
-			'singular' => 'medium',
-			'plural'   => 'media',
-			'ajax'     => false,
-		) );
+		parent::__construct(
+			array(
+				'singular' => 'medium',
+				'plural'   => 'media',
+				'ajax'     => false,
+			)
+		);
 		$this->save_page   = $options['save_page'];
 		$this->option_name = $options['option_name'];
 		$this->nonce = wp_create_nonce(
@@ -168,32 +173,34 @@ class Qrcodes_Media_Query_List_Table extends WP_List_Table {
 			) {
 			$func = create_function(
 				'$medium1,$medium2',
-				'return strcmp( $medium1["ID"], $medium2["ID"] );'
+				'return strcmp( $medium1["id"], $medium2["id"] );'
 			);
 		} else {
 			$func = create_function(
 				'$medium1,$medium2',
-				'return strcmp( $medium2["ID"], $medium1["ID"] );'
+				'return strcmp( $medium2["id"], $medium1["id"] );'
 			);
 		}
 
 		$items = array();
 		foreach ( $media as $medium => $desc ) {
 			$items[] = array(
-				'ID'          => $medium,
+				'id'          => $medium,
 				'description' => $desc,
 			);
 		}
 
-		$per_page = 20;
+		$per_page    = 20;
 		$total_items = count( $items );
 		$total_pages = ceil( $total_items / $per_page );
 
-		$this->set_pagination_args( array(
-			'per_page'    => $per_page,
-			'total_items' => $total_items,
-			'total_pages' => $total_pages,
-		) );
+		$this->set_pagination_args(
+			array(
+				'per_page'    => $per_page,
+				'total_items' => $total_items,
+				'total_pages' => $total_pages,
+			)
+		);
 
 		$paged = $this->get_pagenum();
 
@@ -211,28 +218,29 @@ class Qrcodes_Media_Query_List_Table extends WP_List_Table {
         return sprintf(
             '<input type="checkbox" name="%1$s[]" value="%2$s" />',
             esc_attr( $this->option_name ),
-            esc_attr( $item['ID'] )
+            esc_attr( $item['id'] )
         );
     }
 
 	function column_name( $item, $column_name ) {
 		$this->screen;
-		$query = http_build_query( array(
-			'action'           => 'delete',
-			'_wpnonce'         => $this->nonce,
-			'_wp_http_referer' => $_SERVER['REQUEST_URI'],
-			$this->option_name => array( $item['ID'] ),
-		) );
-        $actions = array(
-            'delete'    => sprintf(
-				'<a href="%1$s%2$s">%3$s</a>',
-				$this->save_page,
-				$query,
-				__( 'delete', 'qrcodes' )
-			),
-        );
+		$query = http_build_query(
+			array(
+				'action'           => 'delete',
+				'_wpnonce'         => $this->nonce,
+				'_wp_http_referer' => $_SERVER['REQUEST_URI'],
+				$this->option_name => array( $item['id'] ),
+			)
+		);
+		$delete  = sprintf(
+			'<a href="%1$s%2$s">%3$s</a>',
+			$this->save_page,
+			$query,
+			__( 'delete', 'qrcodes' )
+		);
+        $actions = array( 'delete' => $delete );
 		echo
-			esc_html( $item['ID'] ) .
+			esc_html( $item['id'] ) .
 			$this->row_actions( $actions );
 	}
 

@@ -71,7 +71,7 @@ function qrcodes_sanitize_library_correction_level( $value ) {
 		QR_ECLEVEL_L,
 		QR_ECLEVEL_M,
 		QR_ECLEVEL_Q,
-		QR_ECLEVEL_H
+		QR_ECLEVEL_H,
 	);
 	if ( ! in_array( $value, $values ) ) {
 		return false;

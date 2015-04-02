@@ -100,15 +100,17 @@ function qrcodes_index_admin_init() {
 
 	global $list;
 
-	$list = new Qrcodes_Index_List_Table( array(
-		'save_page'        => 'options-general.php',
-		'option_name'      => 'qrcodes-index-generated',
-		'args_save_page'   => array(
-			'page'             => $_REQUEST['page'],
-			'_wp_http_referer' => $_SERVER['REQUEST_URI'],
-		),
-		'suffix_save_page' => '',
-	) );
+	$list = new Qrcodes_Index_List_Table(
+		array(
+			'save_page'        => 'options-general.php',
+			'option_name'      => 'qrcodes-index-generated',
+			'args_save_page'   => array(
+				'page'             => $_REQUEST['page'],
+				'_wp_http_referer' => $_SERVER['REQUEST_URI'],
+			),
+			'suffix_save_page' => '',
+		)
+	);
 }
 add_action( 'admin_init', 'qrcodes_index_admin_init' );
 
@@ -177,11 +179,13 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 		$suffix_save_page;
 
 	function __construct( $options ) {
-		parent::__construct( array(
-			'singular' => 'qrcode',
-			'plural'   => 'qrcodes',
-			'ajax'     => false,
-		) );
+		parent::__construct(
+			array(
+				'singular' => 'qrcode',
+				'plural'   => 'qrcodes',
+				'ajax'     => false,
+			)
+		);
 		$this->save_page        = $options['save_page'];
 		$this->option_name      = $options['option_name'];
 		$this->args_save_page   = $options['args_save_page'];
@@ -265,7 +269,7 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 	function filter_items( $items ) {
 		if ( ! empty( $_REQUEST['s'] ) ) {
 			$filter = addslashes( $_REQUEST['s'] );
-			$items = array_filter(
+			$items  = array_filter(
 				$items,
 				create_function(
 					'$item',
@@ -320,7 +324,7 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 		}
 
 		$blog_id = get_current_blog_id();
-		$error = array();
+		$error   = array();
 		foreach ( $items_to_delete as $item ) {
 			if ( ! qrcodes_exists( $item ) ) {
 				qrcodes_index_remove( $blog_id, $item );
@@ -366,6 +370,7 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 
 	function process_bulk_action() {
 		$action = $this->current_action();
+
 		switch ( $action ) {
 			case 'delete':
 				$this->delete_action();
@@ -384,9 +389,9 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 	
 	function sanitize_orderby( $orderby = null ) {
 		if ( ! in_array(
-				$orderby,
-				array_keys( $this->get_sortable_columns() )
-			) ) {
+			$orderby,
+			array_keys( $this->get_sortable_columns() )
+		) ) {
 			$orderby = 'path';
 		}
 		return $orderby;
@@ -417,9 +422,9 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 	}
 
 	function prepare_items( $qrcodes ) {
-		$func = $this->get_sort_function();
-		
+		$func  = $this->get_sort_function();
 		$items = array();
+
 		foreach ( $qrcodes as $data => $qrcode ) {
 			$items[] = array(
 				'data' => $data,
@@ -428,17 +433,18 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 			);
 		}
 
-		$items = $this->filter_items( $items );
-
-		$per_page = 10;
+		$items       = $this->filter_items( $items );
+		$per_page    = 10;
 		$total_items = count( $items );
 		$total_pages = ceil( $total_items / $per_page );
 
-		$this->set_pagination_args( array(
-			'per_page'    => $per_page,
-			'total_items' => $total_items,
-			'total_pages' => $total_pages,
-		) );
+		$this->set_pagination_args(
+			array(
+				'per_page'    => $per_page,
+				'total_items' => $total_items,
+				'total_pages' => $total_pages,
+			)
+		);
 
 		$paged = $this->get_pagenum();
 
@@ -469,15 +475,14 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 		
 		$actions = array();
 		foreach ( $this->get_bulk_actions() as $action => $title ) {
-			$actions[ $action ] =
-				'<a href="' . $this->save_page . '?' .
-					http_build_query( array_merge(
-						$query,
-						$this->args_save_page,
-						array(
-							'action' => $action,
+			$actions[ $action ] = '<a href="' . $this->save_page . '?' .
+					http_build_query(
+						array_merge(
+							$query,
+							$this->args_save_page,
+							array( 'action' => $action )
 						)
-					) ) .
+					) .
 					$this->suffix_save_page .
 				'">' .
 					esc_html( strtolower( $title ) ) .

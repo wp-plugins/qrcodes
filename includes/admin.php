@@ -1,7 +1,7 @@
 <?php
-include_once path_join( __DIR__, 'admin_network.php' );
-include_once path_join( __DIR__, 'admin_library.php' );
-include_once path_join( __DIR__, 'admin_media_query.php' );
+include_once path_join( __DIR__, 'admin-network.php' );
+include_once path_join( __DIR__, 'admin-library.php' );
+include_once path_join( __DIR__, 'admin-media-query.php' );
 
 function qrcodes_admin_page() {
 	?><div class="wrap"><?php
@@ -9,12 +9,15 @@ function qrcodes_admin_page() {
 			_e( 'QRCodes plugin settings', 'qrcodes' );
 		?></h2><?php
 		?><form method="post" action="<?php echo admin_url( 'options.php' ); ?>"><?php
-			$pages = apply_filters( 'qrcodes-admin-page', array(
-				'general' => array(
-					'menu'     => __( 'General', 'qrcodes' ),
-					'sections' => 'qrcodes-general',
-				),
-			) );
+			$pages = apply_filters(
+				'qrcodes-admin-page',
+				array(
+					'general' => array(
+						'menu'     => __( 'General', 'qrcodes' ),
+						'sections' => 'qrcodes-general',
+					),
+				)
+			);
 			settings_fields( 'qrcodes-group' );
 			?><h2 class="nav-tab-wrapper"><?php
 				foreach ( $pages as $id => $page ) {
@@ -63,7 +66,7 @@ function qrcodes_admin_script( $page ) {
 	if ( 'settings_page_qrcodes' == $page ) {
 		wp_enqueue_script(
 			'qrcodes-admin',
-			plugins_url( path_join( '/script', 'admin.js') , QRCODES_INDEX_FILE ),
+			plugins_url( path_join( '/script', 'admin.js' ), QRCODES_INDEX_FILE ),
 			array( 'jquery' ),
 			'0.1',
 			true
@@ -165,7 +168,7 @@ function qrcodes_display_redirect_404( $name ) {
 		'qrcodes-network-override-data-allow',
 		true
 	);
-	$value = get_blog_option( get_current_blog_id(), $name, true ); ?>
+	$value   = get_blog_option( get_current_blog_id(), $name, true ); ?>
 	<input
 		type="checkbox"
 		name="<?php echo esc_attr( $name ); ?>"
@@ -182,7 +185,7 @@ function qrcodes_display_override_data_value( $name ) {
 		'qrcodes-network-override-data-allow',
 		true
 	);
-	$value = $enabled ?
+	$value   = $enabled ?
 		get_blog_option(
 			get_current_blog_id(),
 			$name,

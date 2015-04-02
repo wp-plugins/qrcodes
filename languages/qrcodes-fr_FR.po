@@ -30,8 +30,8 @@ msgstr "Général"
 #: G:\Documents\My Web
 #: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin.php:45
 #: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin.php:46
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:5
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:6
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:5
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:6
 msgid "QRCodes"
 msgstr "QRCodes"
 
@@ -42,7 +42,7 @@ msgstr "Définir les options utilisées par l'extension QRCodes."
 
 #: G:\Documents\My Web
 #: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin.php:88
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:58
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:58
 msgid "General settings"
 msgstr "Options générales"
 
@@ -62,212 +62,212 @@ msgid "Replace thumbnail's articles"
 msgstr "Remplacer l'image à la une des articles par le qrcode"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_library.php:5
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-library.php:5
 msgid "QRCode Library settings"
 msgstr "Options de la bibliothèque QRCode PHP"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_library.php:12
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-library.php:12
 msgid "Correction level"
 msgstr "Niveau de correction"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_library.php:26
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-library.php:26
 msgid "Matrix point size"
 msgstr "Taille des point de la matrice"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_library.php:40
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-library.php:40
 msgid "Margin"
 msgstr "Marge"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_library.php:56
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-library.php:56
 msgid "Library"
 msgstr "Librairie"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_library.php:65
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-library.php:65
 msgid "Set options used by QRCode PHP library."
 msgstr "Définir les options utilisées par la biliothèque QRCode PHP."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_library.php:93
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-library.php:93
 msgid "Low"
 msgstr "Basse"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_library.php:99
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-library.php:99
 msgid "Medium"
 msgstr "Moyenne"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_library.php:105
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-library.php:105
 msgid "Normal"
 msgstr "Normal"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_library.php:111
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-library.php:111
 msgid "High"
 msgstr "Haute"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:12
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:13
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:282
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:12
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:13
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:282
 msgid "Media query"
 msgstr "Media query"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:52
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:52
 msgid "Media query settings"
 msgstr "Options des media query"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:66
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:66
 msgid "Media list"
 msgstr "List des média"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:70
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:190
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:70
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:190
 msgid "Manage media query."
 msgstr "Gérer les media query."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:152
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:152
 msgid "New medium"
 msgstr "Nouveau média"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:163
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:163
 msgid "Identifier"
 msgstr "Identifiant"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:171
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media_query_list_table.php:28
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:171
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media-query-list-table.php:28
 msgid "Description"
 msgstr "Description"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:215
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:215
 msgid "Active"
 msgstr "Activer"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:234
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:234
 msgid "Horizontal position"
 msgstr "Position horizontal"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:253
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:253
 msgid "Vertical position"
 msgstr "Position vertical"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:267
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:267
 msgid "Size"
 msgstr "Taille"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:269
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:269
 msgid "use carefully !"
 msgstr "Utilisez prudemment !"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:291
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:291
 msgid "Add and modify a media query."
 msgstr "Ajouter et modifier un media query"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:307
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:307
 msgid "Invalid value"
 msgstr "Valeur incorrecte"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:334
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:334
 msgid "Automatic"
 msgstr "Automatique"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:344
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:344
 msgid "Number"
 msgstr "Nombre"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:364
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:364
 msgid "left"
 msgstr "gauche"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:365
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:365
 msgid "right"
 msgstr "droite"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:371
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:371
 msgid "top"
 msgstr "haut"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:372
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:372
 msgid "bottom"
 msgstr "bas"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:484
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:484
 msgid "Invalid new media query."
 msgstr "Nouveau media query incorrect."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:492
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:492
 msgid "New media query saved."
 msgstr "Nouveau media query enregistré."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:523
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:523
 msgid "identifier"
 msgstr "Identifiant."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:538
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:538
 msgid "a short description"
 msgstr "un courte description"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_media_query.php:545
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-media-query.php:545
 msgid "Add new medium"
 msgstr "Ajouter un nouveau media"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:35
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:35
 msgid "QRCodes network settings"
 msgstr "Paramètres QRCodes de réseau"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:50
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:50
 msgid "Set network options used by QRCodes plugin."
 msgstr "Définir les options réseaux utilisées par la biliothèque QRCode PHP."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:70
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:70
 msgid "Generate qrcodes for all sites"
 msgstr "Générer les qrcodes pour tout les sites."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:79
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:79
 msgid "Default qrcodes' link"
 msgstr "Lien par défaut des qrcodes"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:92
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:92
 msgid "Allow sites to override"
 msgstr "Autoriser les sites à passer outre"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:109
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:124
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:109
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:124
 msgid ""
 "You seem to have a <b>large network</b>. Qrcodes generation does not work "
 "yet."
@@ -276,128 +276,128 @@ msgstr ""
 "fonctionne pas encore."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:210
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:210
 msgid "No qrcodes generated."
 msgstr "Aucune qrcode généré."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:218
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:218
 msgid "1 qrcode has been generated for 1 site."
 msgstr "1 qrcode a été généré pour 1 site."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:231
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:231
 #, php-format
 msgid "%d qrcodes has been generated for 1 site."
 msgstr "%d qrcodes ont été généré pour 1 site."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:246
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:254
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:246
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:254
 msgid "Generate qrcodes"
 msgstr "Générer les qrcodes."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin_network.php:263
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/admin-network.php:263
 #, php-format
 msgid "Last generation: %s ago."
 msgstr "Dernière génération il y a %s."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:9
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:65
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:66
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:9
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:65
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:66
 msgid "QRCodes list"
 msgstr "Liste des qrcodes"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:15
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:15
 msgid "Filter"
 msgstr "Filtrer"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:85
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:85
 msgid "All qrcodes stored for your blog."
 msgstr "Tous les qrcodes enregistré sur votre site."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:92
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:92
 msgid "List"
 msgstr "Liste"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:197
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:197
 msgid "Preview"
 msgstr "Aperçu"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:198
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:198
 msgid "Path"
 msgstr "Chemin"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:199
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:199
 msgid "Data"
 msgstr "Donnée"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:200
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:200
 msgid "Creation date"
 msgstr "Date de création"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:261
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media_query_list_table.php:71
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:261
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media-query-list-table.php:71
 msgid "Delete"
 msgstr "Supprimer"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:285
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:285
 msgid "No qrcodes selected."
 msgstr "Aucun qrcodes sélectionnés."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:312
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:312
 msgid "This qrcode does not exists."
 msgstr "Ce qrcode n'existe pas."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:338
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:338
 msgid "Cannot remove this qrcode."
 msgstr "Impossible de supprimer ce qrcode."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog_index.php:354
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/blog-index.php:354
 msgid "1 qrcode removed."
 msgstr "1 qrcode supprimé."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media_query_list_table.php:27
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media-query-list-table.php:27
 msgid "Name"
 msgstr "Nom"
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media_query_list_table.php:83
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media-query-list-table.php:83
 msgid "No media query selected."
 msgstr "Aucun media query selectionné."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media_query_list_table.php:106
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media-query-list-table.php:106
 msgid "This medium does not exists."
 msgstr "Ce media n'existe pas."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media_query_list_table.php:124
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media-query-list-table.php:124
 msgid "Apologies, cannot save changes."
 msgstr "Désolé, je ne peux sauvegarder les changements."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media_query_list_table.php:136
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media-query-list-table.php:136
 msgid "1 medium removed"
 msgstr "A media supprimé."
 
 #: G:\Documents\My Web
-#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media_query_list_table.php:231
+#: Sites\WordPress\wp-content\plugins\qrcodes/includes/media-query-list-table.php:231
 msgid "delete"
 msgstr "supprimer"
 

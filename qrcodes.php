@@ -39,7 +39,7 @@ require_once path_join( QRCODES_LIB_PATH, 'qrlib.php' );
 
 include_once path_join(
 	plugin_dir_path( QRCODES_INDEX_FILE ),
-	'includes/blog_index.php'
+	'includes/blog-index.php'
 );
 
 function qrcodes_get_baseurl() {
@@ -88,13 +88,13 @@ function qrcodes_get_404_url( $blog_id = false ) {
 }
 
 function qrcodes_new_blog(
-		$blog_id,
-		$user_id = null,
-		$domain  = null,
-		$path    = null,
-		$site_id = null,
-		$meta    = null
-	) {
+	$blog_id,
+	$user_id = null,
+	$domain  = null,
+	$path    = null,
+	$site_id = null,
+	$meta    = null
+) {
 	/*
 	remove_shortcode( 'current-url' );
 	add_shortcode(
@@ -123,7 +123,7 @@ function qrcodes_new_blog(
 			return $blog_id;
 		}
 	);*/
-	$url = get_home_url( $blog_id );
+	$url  = get_home_url( $blog_id );
 	$data = apply_filters( 'qrcodes-data', $url );
 	qrcodes_generate( $data );
 }
@@ -244,13 +244,15 @@ function qrcodes_footer() {
 	}
 	?><img
 		src="<?php echo qrcodes_get_url( $data ); ?>"
-		class="<?php echo implode(
-			' ',
-			apply_filters(
-				'qrcodes-classes',
-				array( 'qrcodes' )
-			)
-		); ?>"
+		class="<?php
+			echo implode(
+				' ',
+				apply_filters(
+					'qrcodes-classes',
+					array( 'qrcodes' )
+				)
+			);
+		?>"
 	/><?php
 }
 add_action( 'wp_footer' , 'qrcodes_footer' );
@@ -265,8 +267,7 @@ function qrcodes_enqueue_style() {
 		'all'
 	);
 	foreach ( $media_query as $medium => $desc ) {
-		$style =
-			'display:block;' .
+		$style = 'display:block;' .
 			get_blog_option(
 				get_current_blog_id(),
 				"qrcodes-media-query-{$medium}-horizontal-direction"
@@ -283,13 +284,12 @@ function qrcodes_enqueue_style() {
 				get_current_blog_id(),
 				"qrcodes-media-query-{$medium}-vertical-value"
 			) . ';';
-		$size = get_blog_option(
+		$size  = get_blog_option(
 			get_current_blog_id(),
 			"qrcodes-media-query-{$medium}-size"
 		);
 		if ( $auto_size ) {
-			$style .=
-				'width:' .
+			$style .= 'width:' .
 				get_blog_option(
 					get_current_blog_id(),
 					"qrcodes-media-query-{$medium}-size"
@@ -300,13 +300,10 @@ function qrcodes_enqueue_style() {
 					"qrcodes-media-query-{$medium}-size"
 				) . ';';
 		}
+		$medium = esc_attr( $medium );
 		wp_add_inline_style(
 			'qrcodes',
-			'@media ' . esc_attr( $medium ) . '{' .
-				'body .qrcodes {' .
-					$style .
-				'}' .
-			'}'
+			"@media {$medium} {body .qrcodes {{$style}}}"
 		);
 	}
 }
@@ -325,9 +322,11 @@ add_shortcode( 'user-id', 'qrcodes_shortcode_userid' );
 */
 
 function qrcodes_shortcode_currenturl( $atts ) {
-	$atts = shortcode_atts( array(
-		'encode' => 'false',
-	), $atts, 'current-url' );
+	$atts = shortcode_atts(
+		array( 'encode' => 'false' ),
+		$atts,
+		'current-url'
+	);
 	$url = qrcodes_get_current_url();
 	if ( wp_validate_boolean( $atts['encode'] ) ) {
 		$url = urlencode( $url );
@@ -346,10 +345,10 @@ function qrcodes_network_data_force( $data ) {
 }
 function qrcodes_data_force( $data ) {
 	$value = get_blog_option(
-			get_current_blog_id(),
-			'qrcodes-override-data-value',
-			network_home_url()
-		);
+		get_current_blog_id(),
+		'qrcodes-override-data-value',
+		network_home_url()
+	);
 	$value = do_shortcode( $value );
 	return $value;
 }
