@@ -82,6 +82,11 @@ Define `QRCODES_BASEDIR` constant then add following line to *wp-config.php*.
 
 == Changelog ==
 
+= 1.3.3 =
+
+* Fix postbox on admin page.
+* Fix tooltip to autoclose when another is opened.
+
 = 1.3.2 =
 
 * Add tooltip in admin pages.

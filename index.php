@@ -2,8 +2,8 @@
 /*
 Plugin Name: QRCodes
 Description: Add qrcodes to pages
-Author: Pierre Péronnet
-Version: 1.3.1
+Author: Pierre Peronnet
+Version: 1.3.3
 */
 
 $uploads = wp_upload_dir();
