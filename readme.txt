@@ -13,40 +13,30 @@ Choose where to display and when (ex: only on printed page).
 
 == Description ==
 
-QRCodes is a plugin very usefull, when visitor print pages, it add qrcodes which redirect to the url. So people who read your posts (and pages) can find easily your website.
+QRCodes is a plugin very usefull, when visitor print pages, it add qrcodes which redirect to the current url. So people who read your posts (and pages) can find easily your website.
 
-It automatically generate qrcode for wordpress posts and pages (they are cached and your site will still be as fast as before you install this plugin).
-Moreove, it add qrcodes to all other visited pages.
+It automatically generate qrcode for wordpress posts and pages (they are cached so your site will still be as fast as before you install this plugin).
+Moreove, it add qrcodes on the go to all other visited pages.
 
 Help your visitor and everyone to find and reach your website.
 
-== Requirement ==
-
-QRCodes requires :
-
-* A valid [*QRCode PHP library*](http://sourceforge.net/projects/phpqrcode/ 'SourceForge Project') installation.
-
 == Installation ==
 
-1. Install QRCode PHP Library (see below).
-2. Extract plugin to the `/wp-content/plugins/` directory.
+1. Extract plugin to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress. If you have a multisite installation it may take few minutes.
-3. Enjoy your qrcodes by printing home page !
-
-= QRCode PHP =
-
-1. Download [QRCode PHP library](http://sourceforge.net/projects/phpqrcode/ 'SourceForge Project').
-2. Install it (extract it) in a folder accessible by your WebServer (such as /path/to/your/wordpress/folder/library/qrcode).
-3. In your `wp-content.php`, juste before `/* That's all, stop editing! Happy blogging. */`, add following lines:
- ``//QRCode PHP library
- define( 'qrcodes_LIB_PATH', '/path/to/your/wordpress/folder/library/qrcode' );``
+3. Enjoy your qrcodes by printing home page!
 
 = Optionnal =
 
-You can, by adding constants in `wp-config.php` specify path :
+You can, by adding constants in `wp-config.php` specify path:
 
 * to store QRCodes by adding ``define( 'QRCODES_BASEDIR', '/path/to/qrcodes' );``
 * to access QRCodes by adding ``define( 'QRCODES_BASEURL', 'http://your-domain.com/path/to/qrcodes' );``
+
+You can also add following lines to specify a custom *QRCode PHP* library:
+
+ ``//QRCode PHP library
+ define( 'qrcodes_LIB_PATH', '/path/to/your/wordpress/folder/library/qrcode' );``
 
 == Screenshots ==
 
