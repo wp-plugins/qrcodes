@@ -67,9 +67,15 @@ function qrcodes_admin_script( $page ) {
 		wp_enqueue_script(
 			'qrcodes-admin',
 			plugins_url( path_join( '/script', 'admin.js' ), QRCODES_INDEX_FILE ),
-			array( 'jquery' ),
+			array( 'jquery', 'wp-pointer' ),
 			'0.1',
 			true
+		);
+		wp_enqueue_style( 'wp-pointer' );
+		wp_localize_script(
+			'qrcodes-admin',
+			'qrcodesPointerMouseOver',
+			apply_filters( 'qrcodes-pointer-mouseover', array() )
 		);
 	}
 }

@@ -1,12 +1,12 @@
 === QRCodes ===
-Contributors: holyhope
-Donate link:
-Tags: qrcodes, qrcode, flash, barcode, generator, multisite, multiblog, footer, print, navigation, mobile, phone
 Requires at least: 4.1
-Tested up to: 4.1
-Stable tag: trunk
-License: GPLv2 or later.
-License URI: http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses
+Tested up to:      4.1
+Contributors:      holyhope
+Donate link:
+License URI:       http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses
+Stable tag:        trunk
+License:           GPLv2 or later.
+Tags:              qrcodes, qrcode, flash, barcode, generator, multisite, multiblog, footer, print, navigation, mobile, phone
 
 QRCodes add images that visitor can flash with their favorites applications.
 Choose where to display and when (ex: only on printed page).
@@ -81,6 +81,11 @@ Define `QRCODES_BASEDIR` constant then add following line to *wp-config.php*.
 `define( 'QRCODES_BASEURL', '/wp-content/uploads/qrcodes' );`
 
 == Changelog ==
+
+= 1.3.2 =
+
+* Add tooltip in admin pages.
+* Fix sources path in langage project.
 
 = 1.3.1 =
 
@@ -162,3 +167,4 @@ Please tell me what's wrong with that plugin and what would you have in future v
 * Add comments in code.
 * Fix `[user-id]` shortcode by generate qrcode on the go for logged user.
 * Fix settings error on *qrcodes-index* page.
+* Use language wordpress folder.

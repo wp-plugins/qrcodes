@@ -34,3 +34,21 @@ jQuery( document ).ready( function ( $ ) {
 	} );
 	$( ".nav-tab-wrapper .nav-tab" ).first().click();
 } );
+jQuery( document ).ready( function ( $ ) {
+	$( qrcodesPointerMouseOver ).each( function ( index, elem ) {
+		$( elem.selector )
+			.mouseenter( function() {
+				$( this ).pointer( 'open' );
+			} )
+			.pointer( {
+				content:
+					'<h3>' + elem.title + '</h3>' +
+					elem.content,
+				position: {
+					edge:  elem.edge,
+					align: elem.align
+				},
+				stop: function () {}
+			} );
+	} );
+} );

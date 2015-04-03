@@ -17,7 +17,7 @@ function qrcodes_media_query_admin_network_menu() {
 	);
 	add_action(
 		"load-{$slug}",
-		'qrcodes_media_query_admin_network_load_media_query',
+		'qrcodes_media_query_admin_network_load',
 		12
 	);
 }
@@ -33,10 +33,33 @@ if ( is_multisite() ) {
 	);
 }
 
-function qrcodes_media_query_admin_network_load_media_query() {
+function qrcodes_media_query_admin_network_load() {
 	add_action(
 		'network_admin_notices',
 		'qrcodes_media_query_admin_network_notices'
+	);
+}
+
+function qrcodes_media_query_admin_load() {
+	add_filter(
+		'qrcodes-pointer-mouseover',
+		'qrcodes_media_query_pointers'
+	);
+}
+add_action( 'load-settings_page_qrcodes', 'qrcodes_media_query_admin_load' );
+
+function qrcodes_media_query_pointers( $pointers ) {
+	return array_merge(
+		$pointers,
+		array(
+			array(
+				'edge'     => 'left',
+				'align'    => 'left',
+				'title'    => __( 'Unreadable', 'qrcodes' ),
+				'content'  => __( '<p>Qrcodes may be unreadable due to images deformations.</p>', 'qrcodes' ),
+				'selector' => '.qrcodes-pointer-media-query-size',
+			),
+		)
 	);
 }
 
@@ -267,7 +290,7 @@ function qrcodes_media_query_admin_init() {
 		add_settings_field(
 			"qrcodes-media-query-{$medium}-size",
 			__( 'Size', 'qrcodes' ) . '<br />' .
-			'<small>' . __( 'use carefully !', 'qrcodes' ) . '</small>',
+			'<small>' . __( 'use carefully', 'qrcodes' ) . '<span class="dashicons dashicons-editor-help qrcodes-pointer-media-query-size"></span></small>',
 			'qrcodes_media_query_display_size',
 			'qrcodes-media-query',
 			"qrcodes-media-query-{$medium}",
