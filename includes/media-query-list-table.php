@@ -39,7 +39,7 @@ class Qrcodes_Media_Query_List_Table extends WP_List_Table {
 			'name' => array( 'name', true ),
 		);
 	}
-	
+
 	function extra_tablenav( $which ) {
 		switch ( $which ) {
 			case 'top':
@@ -50,7 +50,7 @@ class Qrcodes_Media_Query_List_Table extends WP_List_Table {
 				break;
 		}
 	}
-	
+
 	function display_tablenav( $which ) {
 		if ( 'top' == $which ) {
 			?><input
@@ -70,7 +70,7 @@ class Qrcodes_Media_Query_List_Table extends WP_List_Table {
 			?><br class="clear" />
 		</div><?php
 	}
-	
+
 	function get_bulk_actions() {
 		return array(
 			'delete' => __( 'Delete', 'qrcodes' ),
@@ -153,7 +153,7 @@ class Qrcodes_Media_Query_List_Table extends WP_List_Table {
 	}
 
 	function prepare() {
-		$this->_column_headers = array( 
+		$this->_column_headers = array(
 			$this->get_columns(),
 			array(),
 			$this->get_sortable_columns(),
@@ -166,10 +166,10 @@ class Qrcodes_Media_Query_List_Table extends WP_List_Table {
 
 	function prepare_items( $media ) {
 		if (
-				empty( $_REQUEST[ 'order' ] ) ||
-				$_REQUEST[ 'order' ] != 'desc' ||
+				empty( $_REQUEST['order'] ) ||
+				'desc' != $_REQUEST['order'] ||
 				empty( $_REQUEST['orderby'] ) ||
-				$_REQUEST['orderby'] != 'name'
+				'name' != $_REQUEST['orderby']
 			) {
 			$func = create_function(
 				'$medium1,$medium2',
@@ -205,7 +205,7 @@ class Qrcodes_Media_Query_List_Table extends WP_List_Table {
 		$paged = $this->get_pagenum();
 
 		usort( $items, $func );
-	
+
 		$this->items = array_slice(
 			$items,
 			( $paged - 1 ) * $per_page,
@@ -214,13 +214,13 @@ class Qrcodes_Media_Query_List_Table extends WP_List_Table {
 		);
 	}
 
-    function column_cb( $item ){
-        return sprintf(
-            '<input type="checkbox" name="%1$s[]" value="%2$s" />',
-            esc_attr( $this->option_name ),
-            esc_attr( $item['id'] )
-        );
-    }
+	function column_cb( $item ){
+		return sprintf(
+			'<input type="checkbox" name="%1$s[]" value="%2$s" />',
+			esc_attr( $this->option_name ),
+			esc_attr( $item['id'] )
+		);
+	}
 
 	function column_name( $item, $column_name ) {
 		$this->screen;
@@ -238,13 +238,13 @@ class Qrcodes_Media_Query_List_Table extends WP_List_Table {
 			$query,
 			__( 'delete', 'qrcodes' )
 		);
-        $actions = array( 'delete' => $delete );
+		$actions = array( 'delete' => $delete );
 		echo
 			esc_html( $item['id'] ) .
 			$this->row_actions( $actions );
 	}
 
 	function column_default( $item, $column_name ) {
-		echo $item[ $column_name ];
+		echo esc_html( $item[ $column_name ] );
 	}
 }

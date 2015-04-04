@@ -223,7 +223,7 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 				break;
 		}
 	}
-	
+
 	function display_tablenav( $which ) {
 		if ( 'top' == $which ) {
 			?><input
@@ -243,14 +243,14 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 			?><br class="clear" />
 		</div><?php
 	}
-	
+
 	function prepare() {
-		$this->_column_headers = array( 
+		$this->_column_headers = array(
 			$this->get_columns(),
 			array(),
 			$this->get_sortable_columns(),
 		);
-	
+
 		$items = get_blog_option(
 			get_current_blog_id(),
 			$this->option_name,
@@ -265,7 +265,7 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 			'delete' => __( 'Delete', 'qrcodes' ),
 		);
 	}
-	
+
 	function filter_items( $items ) {
 		if ( ! empty( $_REQUEST['s'] ) ) {
 			$filter = addslashes( $_REQUEST['s'] );
@@ -280,7 +280,7 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 		}
 		return $items;
 	}
-	
+
 	function delete_action() {
 		if ( empty( $_REQUEST[ $this->option_name ] ) ) {
 			add_settings_error(
@@ -379,14 +379,14 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 				return false;
 		}
 	}
-	
+
 	function sanitize_order( $order = null ) {
 		if ( 'desc' != $order ) {
 			$order = 'asc';
 		}
 		return $order;
 	}
-	
+
 	function sanitize_orderby( $orderby = null ) {
 		if ( ! in_array(
 			$orderby,
@@ -449,7 +449,7 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 		$paged = $this->get_pagenum();
 
 		usort( $items, $func );
-		
+
 		$this->items = array_slice(
 			$items,
 			( $paged - 1 ) * $per_page,
@@ -458,21 +458,21 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 		);
 	}
 
-    function column_cb( $item ){
-        return sprintf(
-            '<input type="checkbox" name="%1$s[]" value="%2$s" />',
-            esc_attr( $this->option_name ),
-            esc_attr( $item['data'] )
-        );
-    }
-	
+	function column_cb( $item ){
+		return sprintf(
+			'<input type="checkbox" name="%1$s[]" value="%2$s" />',
+			esc_attr( $this->option_name ),
+			esc_attr( $item['data'] )
+		);
+	}
+
 	function column_path( $item, $column_name ) {
 		$this->screen;
 		$query = array(
 			'_wpnonce'         => $this->nonce,
 			$this->option_name => array( $item['data'] ),
 		);
-		
+
 		$actions = array();
 		foreach ( $this->get_bulk_actions() as $action => $title ) {
 			$actions[ $action ] = '<a href="' . $this->save_page . '?' .
@@ -495,16 +495,16 @@ class Qrcodes_Index_List_Table extends WP_List_Table {
 	}
 
 	function column_preview( $item, $column_name ) {
-		echo '<a target="_blank" href="' . qrcodes_get_url( $item['data'] ) . '">' .
-				'<img class="qrcodes" src="' . qrcodes_get_url( $item['data'] ) . '" />' .
+		echo '<a target="_blank" href="' . esc_url( qrcodes_get_url( $item['data'] ) ) . '">' .
+				'<img class="qrcodes" src="' . esc_url( qrcodes_get_url( $item['data'] ) ) . '" />' .
 			'</a>';
 	}
 
 	function column_time( $item, $column_name ) {
 		echo
-			date_i18n( get_option( 'date_format' ), $item['time'] ) .
+			esc_html( date_i18n( get_option( 'date_format' ), $item['time'] ) ) .
 			'<br />' .
-			date_i18n( get_option( 'time_format' ), $item['time'] );
+			esc_html( date_i18n( get_option( 'time_format' ), $item['time'] ) );
 	}
 
 	function column_default( $item, $column_name ) {

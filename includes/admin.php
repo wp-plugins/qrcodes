@@ -8,7 +8,7 @@ function qrcodes_admin_page() {
 		?><h2><?php
 			_e( 'QRCodes plugin settings', 'qrcodes' );
 		?></h2><?php
-		?><form method="post" action="<?php echo admin_url( 'options.php' ); ?>"><?php
+		?><form method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>"><?php
 			$pages = apply_filters(
 				'qrcodes-admin-page',
 				array(
@@ -19,15 +19,14 @@ function qrcodes_admin_page() {
 				)
 			);
 			settings_fields( 'qrcodes-group' );
-			?><h2 class="nav-tab-wrapper"><?php
-				foreach ( $pages as $id => $page ) {
-						?><a class="nav-tab" href="#qrcodes-page-<?php echo esc_attr( $id ); ?>"><?php
-							echo esc_html( $page['menu'] );
-						?></a><?php
-				} ?>
-			</h2>
+			?><h2 class="nav-tab-wrapper"><?php foreach ( $pages as $id => $page ) {
+				?><a class="nav-tab" href="#qrcodes-page-<?php echo esc_attr( $id ); ?>"><?php
+					echo esc_html( $page['menu'] );
+				?></a><?php
+			} ?></h2>
 			<div id="poststuff">
-				<div id="post-body"><?php
+				<div id="post-body">
+					<?php
 					foreach ( $pages as $id => $page ) {
 						?><div
 							id="qrcodes-page-<?php echo esc_attr( $id ); ?>"
@@ -37,7 +36,8 @@ function qrcodes_admin_page() {
 						?></div></div><?php
 					}
 					submit_button();
-				?></div>
+					?>
+				</div>
 			</div>
 		</form>
 	</div><?php

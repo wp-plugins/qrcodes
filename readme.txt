@@ -82,6 +82,12 @@ Define `QRCODES_BASEDIR` constant then add following line to *wp-config.php*.
 
 == Changelog ==
 
+= 1.3.4 =
+
+* Format code to respect WordPress standard.
+* Fix some rare security issues.
+* Rewrite description of the plugin.
+
 = 1.3.3 =
 
 * Fix postbox on admin page.
@@ -173,3 +179,4 @@ Please tell me what's wrong with that plugin and what would you have in future v
 * Fix `[user-id]` shortcode by generate qrcode on the go for logged user.
 * Fix settings error on *qrcodes-index* page.
 * Use language wordpress folder.
+* Add an option, use WP_DEBUG or add a constant to hide qrcodes list.

@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: QRCodes
-Description: Add qrcodes to pages
+Description: Use media query to add qrcodes to pages and posts.
 Author: Pierre Peronnet
-Version: 1.3.3
+Version: 1.3.4
 */
 
 $uploads = wp_upload_dir();
@@ -26,14 +26,13 @@ if ( ! defined( 'QRCODES_BASEDIR' ) ) {
 	);
 }
 define( 'QRCODES_INDEX_FILE', __FILE__ );
-
 unset( $uploads );
 
 function wp_qrcodes_activation() {
 	if ( ! wp_mkdir_p( QRCODES_BASEDIR ) ) {
 		die( sprint(
 			__( 'Cannot create %s.', 'qrcodes' ),
-			'<i>' . QRCODES_BASEDIR . '</i>'
+			'<i>' . esc_html( QRCODES_BASEDIR ) . '</i>'
 		) );
 	}
 

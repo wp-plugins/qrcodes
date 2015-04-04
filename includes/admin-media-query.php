@@ -64,7 +64,7 @@ function qrcodes_media_query_pointers( $pointers ) {
 }
 
 function qrcodes_media_query_admin_network_notices() {
-    settings_errors( QRCODES_MEDIA_QUERY_OPTION_NAME );
+	settings_errors( QRCODES_MEDIA_QUERY_OPTION_NAME );
 }
 
 function qrcodes_media_query_admin_network_page() {
@@ -99,7 +99,7 @@ function qrcodes_media_query_admin_network_page() {
 						id="qrcodes-new-medium"
 						class="postbox"
 						method="post"
-						action="<?php echo admin_url( 'options.php' ); ?>"
+						action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>"
 					><?php
 						settings_fields( 'qrcodes-media-query-network-new-medium-group' );
 						do_settings_sections( 'qrcodes-media-query-network-page' );
@@ -133,7 +133,6 @@ function qrcodes_media_query_admin_init_table() {
 		__DIR__,
 		'media-query-list-table.php'
 	);
-	
 
 	// Media list
 	$media_list = new Qrcodes_Media_Query_List_Table(
@@ -484,7 +483,7 @@ function qrcodes_sanitize_media_query_vertical_direction( $unit ) {
 	);
 	if ( ! in_array( $unit, $units ) ) {
 		$unit = 'bottom';
-	} 
+	}
 	return $unit;
 }
 
@@ -495,7 +494,7 @@ function qrcodes_sanitize_media_query_unit( $unit ) {
 	);
 	if ( ! in_array( $unit, $units ) ) {
 		$unit = '%';
-	} 
+	}
 	return $unit;
 }
 

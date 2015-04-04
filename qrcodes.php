@@ -243,15 +243,15 @@ function qrcodes_footer() {
 		qrcodes_generate( $data );
 	}
 	?><img
-		src="<?php echo qrcodes_get_url( $data ); ?>"
+		src="<?php echo esc_url( qrcodes_get_url( $data ) ); ?>"
 		class="<?php
-			echo implode(
+			echo esc_attr( implode(
 				' ',
 				apply_filters(
 					'qrcodes-classes',
 					array( 'qrcodes' )
 				)
-			);
+			) );
 		?>"
 	/><?php
 }

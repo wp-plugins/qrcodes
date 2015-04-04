@@ -26,7 +26,7 @@ function qrcodes_admin_network_load() {
 }
 
 function qrcodes_admin_network_notices() {
-    settings_errors( 'qrcodes-network-generate' );
+	settings_errors( 'qrcodes-network-generate' );
 }
 
 function qrcodes_admin_network_page() {
@@ -36,7 +36,7 @@ function qrcodes_admin_network_page() {
 		?></h2>
 		<form
 			method="post"
-			action="<?php echo admin_url( 'options.php' ); ?>"
+			action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>"
 		><?php
 			settings_fields( 'qrcodes-network-group' );
 			do_settings_sections( 'qrcodes-network' );
@@ -140,7 +140,7 @@ function qrcodes_save_settings_network_generate( $value = false ) {
 			)
 		);
 		$nb = count( $sites );
-		if ( $nb == 0 ) {
+		if ( 0 == $nb ) {
 			break;
 		}
 		remove_shortcode( 'user-id' );
@@ -171,7 +171,7 @@ function qrcodes_save_settings_network_generate( $value = false ) {
 					)
 				);
 				$nb = count( $posts );
-				if ( $nb == 0 ) {
+				if ( 0 == $nb ) {
 					break;
 				}
 
@@ -269,7 +269,7 @@ function qrcodes_display_network_generate( $name ) {
 		);
 	}
 	$last = get_option( $name );
-	
+
 	if ( $last ) {
 		?><p><?php
 			printf(
